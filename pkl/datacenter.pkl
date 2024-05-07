@@ -1,0 +1,27 @@
+class Product {
+    name: ProductName
+    type: ProductType
+}
+
+typealias ProductName = "MeshGuard"|"ServiceNavigator"|"MicroFleet"
+
+typealias ProductType = "server"|"client"
+
+class Server {
+    hostname: String
+    ipaddress: String
+    products: Listing<Product>?
+}
+
+class Datacenter {
+    meshguard: MeshGuard?
+    servers: Listing<Server>
+}
+
+
+class MeshGuard {
+    clustername: String
+    servercount: Int
+}
+
+datacenter: Datacenter
