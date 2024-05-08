@@ -3,9 +3,7 @@ amends "./pkl/datacenter.pkl"
 datacenter {
     meshguard {
         clustername = "dev"
-        servercount = 3
     }
-
     servers {
         new {
             hostname = "test-1"
@@ -39,13 +37,17 @@ datacenter {
         }
         new {
             hostname = "test-4"
-            ipaddress = "192.168.0.2"
+            ipaddress = "192.168.0.4"
             products {
                 new {
                     name = "MeshGuard"
                     type = "client"
                 }
             }
+        }
+        new {
+            hostname = "test-5"
+            ipaddress = "192.168.0.5"
         }
     }
 }

@@ -14,7 +14,9 @@ class Server {
 }
 
 class Datacenter {
-    meshguard: MeshGuard?
+    meshguard: MeshGuard = new {
+        servercount = servers.toList().filter((it) -> if (it.products == null) false else (if (it.products.toList().filter((p) -> p.name == "MeshGuard" && p.type == "server").length > 0) true else false)).length
+    }
     servers: Listing<Server>
 }
 
