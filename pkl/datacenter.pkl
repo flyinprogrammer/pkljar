@@ -1,6 +1,6 @@
 class Product {
     name: ProductName
-    type: ProductType
+    type: ProductRole
 }
 
 typealias ProductName = "MeshGuard"|"ServiceNavigator"|"MicroFleet"
@@ -10,8 +10,14 @@ typealias ProductRole = "server"|"client"
 class Server {
     hostname: String
     ipaddress: String
-    products: Mapping<ProductName, ProductType>
-    function isServer(n: ProductName): Boolean = products.containsKey("MeshGuard") && products["MeshGuard"] == "server"
+    products: Mapping<ProductName, ProductRole>
+    config: Config?
+    function isServer(n: ProductName): Boolean = (products.containsKey(n) && products[n] == "server")
+}
+
+class Config {
+    // the default value could be determined by isServer("MeshGuard")
+    server_status: Boolean
 }
 
 class Datacenter {
