@@ -1,6 +1,6 @@
 class Product {
-    name: ProductName
-    type: ProductRole
+  name: ProductName
+  type: ProductRole
 }
 
 typealias ProductName = "MeshGuard"|"ServiceNavigator"|"MicroFleet"
@@ -8,29 +8,31 @@ typealias ProductName = "MeshGuard"|"ServiceNavigator"|"MicroFleet"
 typealias ProductRole = "server"|"client"
 
 class Server {
-    hostname: String
-    ipaddress: String
-    products: Mapping<ProductName, ProductRole>
-    config: Config?
-    function isServer(n: ProductName): Boolean = (products.containsKey(n) && products[n] == "server")
+  hostname: String
+  ipaddress: String
+  products: Mapping<ProductName, ProductRole>
+  config: Config = new {
+    server_status = isServer("MeshGuard")
+  }
+  function isServer(n: ProductName): Boolean = (products.containsKey(n) && products[n] == "server")
 }
 
 class Config {
-    // the default value could be determined by isServer("MeshGuard")
-    server_status: Boolean
+  // the default value could be determined by isServer("MeshGuard")
+  server_status: Boolean
 }
 
 class Datacenter {
-    meshguard: MeshGuard = new {
-        servercount = servers.toList().count((it) -> it.isServer("MeshGuard") )
-    }
-    servers: Listing<Server>
+  meshguard: MeshGuard = new {
+    servercount = servers.toList().count((it) -> it.isServer("MeshGuard"))
+  }
+  servers: Listing<Server>
 }
 
 
 class MeshGuard {
-    clustername: String
-    servercount: Int
+  clustername: String
+  servercount: Int
 }
 
 datacenter: Datacenter
