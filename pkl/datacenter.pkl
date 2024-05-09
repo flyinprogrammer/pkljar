@@ -5,17 +5,18 @@ class Product {
 
 typealias ProductName = "MeshGuard"|"ServiceNavigator"|"MicroFleet"
 
-typealias ProductType = "server"|"client"
+typealias ProductRole = "server"|"client"
 
 class Server {
     hostname: String
     ipaddress: String
-    products: Listing<Product>?
+    products: Mapping<ProductName, ProductType>
+    function isServer(n: ProductName): Boolean = products.containsKey("MeshGuard") && products["MeshGuard"] == "server"
 }
 
 class Datacenter {
     meshguard: MeshGuard = new {
-        servercount = servers.toList().filter((it) -> if (it.products == null) false else (if (it.products.toList().filter((p) -> p.name == "MeshGuard" && p.type == "server").length > 0) true else false)).length
+        servercount = servers.toList().count((it) -> it.isServer("MeshGuard") )
     }
     servers: Listing<Server>
 }

@@ -9,40 +9,28 @@ datacenter {
             hostname = "test-1"
             ipaddress = "192.168.0.1"
             products {
-                new {
-                    name = "MeshGuard"
-                    type = "server"
-                }
+                ["MeshGuard"] = "server"
             }
         }
         new {
             hostname = "test-2"
             ipaddress = "192.168.0.2"
             products {
-                new {
-                    name = "MeshGuard"
-                    type = "server"
-                }
+                ["MeshGuard"] = "server"
             }
         }
         new {
             hostname = "test-3"
             ipaddress = "192.168.0.3"
             products {
-                new {
-                    name = "MeshGuard"
-                    type = "server"
-                }
+                ["MeshGuard"] = "server"
             }
         }
         new {
             hostname = "test-4"
             ipaddress = "192.168.0.4"
             products {
-                new {
-                    name = "MeshGuard"
-                    type = "client"
-                }
+                ["MeshGuard"] = "client"
             }
         }
         new {
